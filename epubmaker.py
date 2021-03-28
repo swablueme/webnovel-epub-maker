@@ -97,7 +97,7 @@ def parse_file(file, singleline=False):
                 #to add it in, add the remaining text into the chapter
                 cleaned_text+=" ".join(collector)
                 cleaned_text+="\n\n"                
-            cleaned_text=delete_bullcrap(cleaned_text)
+            cleaned_text=clean_text(cleaned_text)
             g.write(cleaned_text)
     
 
@@ -121,7 +121,7 @@ def create_epub_ch(epub, file):
     epub.add_chapter(chapter)
 
 
-def delete_bullcrap(text):
+def clean_text(text):
     """regex cleaning function"""
     #patterns.txt describes regex patterns and their replacement
     
