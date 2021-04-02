@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+  "name": "Get protected google doc text",
+  "version": "1.0",
+  "description": "Attempts to retrieve plaintext from google docs",
+	"background": {
+	"scripts": ["background.js"],
+	"persistent": true
+		},
+	"browser_action": {},
+	    "permissions": [
+        "tabs",
+        "https://docs.google.com/document/d/*",
+		"https://*/*"
+    ]
+}

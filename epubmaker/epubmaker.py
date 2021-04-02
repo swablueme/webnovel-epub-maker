@@ -11,6 +11,7 @@ logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
 
 FILENAME="new epub.epub"
+EPUBNAME=FILENAME.split(".")[0]
 class retrywrapper:
     """wrapper for retrying stuff like deleting files etc"""
     @staticmethod
@@ -41,7 +42,7 @@ def open_file(singlelined=()):
     #opens each file for processing
     del_file()
     #creates an epub
-    epub = pypub.Epub('new epub')
+    epub = pypub.Epub(EPUBNAME)
     #adds every .txt file not called patterns.txt as chapters in a book
     filelist=sorted([file for file in os.listdir(os.getcwd()) if file.endswith(".txt") and file!="patterns.txt"], key=extract_num)
     for file in filelist: 

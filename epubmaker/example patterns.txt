@@ -1,0 +1,9 @@
+Previous Chapter ð 
+
+
+Next Chapter(.*)\bTable of Content\b
+\1
+Capture
+Screen reader support enabled\.(.*)chapter \d+
+\1
+Capture
