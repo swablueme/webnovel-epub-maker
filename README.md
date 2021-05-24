@@ -2,7 +2,7 @@
 Three scripts to assist in creating epubs from the web from webpages and webnovels
 
 ## Extract text from websites
-A Google Chrome extension useful for extracting text from protected google doc files or for simple webpage downloads as .txt It saves the `document.body.innerText` variable as a .txt document. For Google Docs use, you need to scroll through the whole page first for it to be able to extract text. Click the extension icon to save the .txt file.
+A Google Chrome extension useful for extracting text from protected google doc files or for simple webpage downloads as .txt It saves the `document.body.innerText` variable from each frame in `window.frames` as a .txt document. For Google Docs use, you need to scroll through the whole page first for it to be able to extract text. Click the extension icon to save the .txt file.
 
 ## Extract websites ignoring selectors
 A python scraper which utilises BeautifulSoup4 to ignore elements within a webpage that can introduce garbage data and downloads text as .txt Customise ignored elements by editing line 24.
