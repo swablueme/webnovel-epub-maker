@@ -11,7 +11,9 @@ A python scraper which utilises BeautifulSoup4 to ignore elements within a webpa
 Uses the python3 compatible version of pypub3 by imgurbot12 https://github.com/imgurbot12/pypub/tree/feat/py3 to stitch together gathered .txt files in the parent directory as an epub. It attempts to extract the first consecutive series of numbers it sees as the chapter number and organises chapters in the Table of Contents of the epub based upon this. This script uses a `patterns.txt` file to specify quick regex replacements for text cleaning. The `open_file` function accepts a tuple of filenames for which linebreaks are broken. For example
 
 > This might be
+>  
 > a paragraph in the
+> >  
 > extracted text.
 
 The singlineline parameter in `parse_file` attempts to establish the end of a paragraph based upon punctuation such as fullstops in order to produce a nicely formatted epub. So in the above example, it would be one line instead of three, if the name of the .txt file with this problem is put in as an argument.
