@@ -31,20 +31,22 @@ class retrywrapper:
         return funcrun
 
 @retrywrapper.retry
-def del_file():
+def del_file(file=FILENAME):
     #Deletes file
-    if os.path.exists(FILENAME):
-        os. remove(FILENAME)
+    if os.path.exists(file):
+        os. remove(file)
 
 #singlelined is a tuple of filenames that should be treated
 #as if it has no paragraph breaks
 def open_file(singlelined=()):
     #opens each file for processing
     del_file()
-    #creates an epub
-    epub = pypub.Epub(EPUBNAME)
+
     #adds every .txt file not called patterns.txt as chapters in a book
     filelist=sorted([file for file in os.listdir(os.getcwd()) if file.endswith(".txt") and file!="patterns.txt"], key=extract_num)
+    EPUBNAME=filelist[0]
+    #creates an epub
+    epub = pypub.Epub(EPUBNAME)
     for file in filelist: 
         if file in singlelined:
             #on some protected google drive docs, there are no paragraph breaks so the text is a solid wall of text
@@ -56,12 +58,25 @@ def open_file(singlelined=()):
         create_epub_ch(epub, file)      
     paths=os.getcwd()
     epub.create_epub(paths)
+    EPUBNAME=filelist[0]+".epub"
+    return EPUBNAME
 
 
 def extract_num(text):
-    """extracts the chapter number to put in the Table of Contents"""
+    """extracts the chapter number to put in the Table of Contents and sorts extras"""
     #the first number found in the filename is the "chapter number"
-    return int(re.search('.*?(\d+).*?', text, re.IGNORECASE).group(1))
+    chapter_num=re.search('.*?(\d+)([\.-][0-9]{0,})?.*?', text, re.IGNORECASE)
+    if chapter_num is not None:
+        main_number=chapter_num.group(1)
+        if chapter_num.group(2) is not None:
+            extra_number=chapter_num.group(2)
+        else:
+            extra_number=""
+    if "extra" in text:
+        main_number="9999"+main_number
+    chapter_num=main_number+extra_number
+    chapter_num=chapter_num.replace("-",".")
+    return float(chapter_num)
 
 def parse_file(file, singleline=False):
     #make an output directory for cleaned .txt files
@@ -118,7 +133,7 @@ def create_epub_ch(epub, file):
             
     message=message%"".join(added_text)
     #create the chapters
-    chapter=pypub.create_chapter_from_string(message, url=None, title=str(extract_num(file)))
+    chapter=pypub.create_chapter_from_string(message, url=None, title=str("%g" % extract_num(file)))
     epub.add_chapter(chapter)
 
 

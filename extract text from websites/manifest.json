@@ -1,16 +1,25 @@
 {
-  "manifest_version": 2,
-  "name": "Get protected google doc text",
-  "version": "1.0",
-  "description": "Attempts to retrieve plaintext from google docs",
+	"manifest_version": 2,
+	"name": "Get protected google doc text",
+	"version": "1.0",
+	"commands": {
+	  "save-page": {
+		  "suggested_key": {
+			"default": "Ctrl+Shift+1"
+		  },
+		  "description": "saves page",
+		  "global": true
+		}
+	},
+	"description": "Attempts to retrieve plaintext from google docs",
 	"background": {
-	"scripts": ["background.js"],
-	"persistent": true
-		},
+		"scripts": ["background.js"],
+		"persistent": true
+	},
 	"browser_action": {},
-	    "permissions": [
-        "tabs",
-        "https://docs.google.com/document/d/*",
+	"permissions": [
+		"tabs",
+		"https://docs.google.com/document/d/*",
 		"https://*/*"
-    ]
+	]
 }
