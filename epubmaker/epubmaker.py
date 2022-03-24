@@ -33,13 +33,9 @@ class retrywrapper:
 @retrywrapper.retry
 def del_file(file=FILENAME):
     #Deletes file
-<<<<<<< HEAD
     if os.path.exists(FILENAME):
         os.remove(FILENAME)
-=======
-    if os.path.exists(file):
-        os. remove(file)
->>>>>>> 52501bce83f8e36dc63cc4aee3ea5d3c46d12ee1
+
 
 #singlelined is a tuple of filenames that should be treated
 #as if it has no paragraph breaks
