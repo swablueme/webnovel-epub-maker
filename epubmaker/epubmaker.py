@@ -34,17 +34,19 @@ class retrywrapper:
 def del_file():
     #Deletes file
     if os.path.exists(FILENAME):
-        os. remove(FILENAME)
+        os.remove(FILENAME)
 
 #singlelined is a tuple of filenames that should be treated
 #as if it has no paragraph breaks
 def open_file(singlelined=()):
     #opens each file for processing
     del_file()
-    #creates an epub
-    epub = pypub.Epub(EPUBNAME)
+
     #adds every .txt file not called patterns.txt as chapters in a book
     filelist=sorted([file for file in os.listdir(os.getcwd()) if file.endswith(".txt") and file!="patterns.txt"], key=extract_num)
+    EPUBNAME=filelist[0]
+    #creates an epub
+    epub = pypub.Epub(EPUBNAME)
     for file in filelist: 
         if file in singlelined:
             #on some protected google drive docs, there are no paragraph breaks so the text is a solid wall of text

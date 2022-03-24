@@ -7,5 +7,5 @@ function download(filename, text) {
   element.click();
   document.body.removeChild(element);
 }
-	
+
 download(document.title+ ".txt", document.body.innerText);
